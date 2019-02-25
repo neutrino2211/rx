@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>RX</title>
+    <script src="./rx.js"></script>
+</head>
+<body>
+
+    <h2>rx-if</h2>
+    <rx-view component="./components/rx-if.html" :name="Harold">
+
+    </rx-view>
+    <br>
+    <br>
+    <h2>rx-for</h2>
+    <rx-view component="./components/rx-for.html">
+
+    </rx-view>
+    <br>
+    <br>
+    <h2>rx-model</h2>
+    <rx-view component="./components/rx-model.html" :name="">
+
+    </rx-view>
+    <br>
+    <br>
+    <h2>rx-data Object</h2>
+    <rx-view component="./components/rx-data-object.html">
+        <rx-data src="https://jsonplaceholder.typicode.com/todos/1"></rx-data>
+    </rx-view>
+    <br>
+    <br>
+    <h2>rx-data Array</h2>
+    <rx-view component="./components/rx-data-array.html">
+        <rx-data src="https://jsonplaceholder.typicode.com/todos?userId=2"></rx-data>
+    </rx-view>
+</body>
+</html>
