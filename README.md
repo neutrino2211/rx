@@ -166,8 +166,6 @@ RX renders all components inside `views` which have `data` that are used by `dir
 
     1. Static templates are denoted in a similar manner to the handlebars syntax and can not contain data that needs to be evaluated e.g `{{someFunc()}}`, instead the value needs to be directly available from the view data and most importantly static templates must not have any character between the braces and the variable name.
 
-     Examples:
-
         1. Data from function
       
             The following code will result in an error because a static template can not evalute functions
@@ -201,38 +199,36 @@ RX renders all components inside `views` which have `data` that are used by `dir
         these syntax choices might look odd but they were made for security reasons, the variables usually used inside templates are in most cases not meant to be evaluated so having non-evaluatable data paired with strict syntax makes it very hard for hackers to perform XSS and at the same time does not hinder a user's freedom.
 
     2. Dynamic templates start and end with two parentheses e.g `(( someFunc() ))` and its values are always evaluated, it can also span multiple lines.
-    
-     Examples
         
-       1. Functions
+        1. Functions
         
-        The following code will execute with no errors
+            The following code will execute with no errors
+            
+            ```html
+            <p>Some value is (( someFunc() ))</p>
+            ```
         
-        ```html
-        <p>Some value is (( someFunc() ))</p>
-        ```
-        
-       2. Objects
-        
-        Since templates can be evaluated, we can access object properties
-        
-        ```html
-        <p>Window size is (( window.innerHeight ))x(( window.innerWidth ))</p>
-        ```
-        
-       3. Multiline
-        
-        Dynamic templates are also multiline so inline javascript can be done.
-        
-        ```html
-        <p>((
-        (function(){
-            console.log("loading");
-            const result = document.getElementById("myInput").value;
-            return Number(result)*myObject.multiplier;
-        })()
-        ))</p>
-        ```
+        2. Objects
+            
+            Since templates can be evaluated, we can access object properties
+            
+            ```html
+            <p>Window size is (( window.innerHeight ))x(( window.innerWidth ))</p>
+            ```
+            
+        3. Multiline
+            
+            Dynamic templates are also multiline so inline javascript can be done.
+            
+            ```html
+            <p>((
+            (function(){
+                console.log("loading");
+                const result = document.getElementById("myInput").value;
+                return Number(result)*myObject.multiplier;
+            })()
+            ))</p>
+            ```
          
 
 #### Lifecycle
