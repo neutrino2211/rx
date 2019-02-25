@@ -28,7 +28,7 @@ RX renders all components inside `views` which have `data` that are used by `dir
     </rx-view>
     ```
 
-* RX uses attributes as a data source, this is because DOM events handle attribute change to an extent that is acceptable so (at least for this scale) there is no need to create our own listeners.
+* RX uses attributes as a data source, this is because DOM events handle attribute change to an extent that is acceptable so (at least for this scale) there is no need to create our own listeners. Only attributes that begin with a colon `:` are considered data
 
    Data that are accepted include `object`, `arrays` and `strings` and they are represented as such.
    
@@ -37,8 +37,7 @@ RX renders all components inside `views` which have `data` that are used by `dir
        String are directly placed as variables without need for parsing or encoding
        
        ```html
-       <rx-view component="myfile.html" name="Mainasara">
-       </rx-view>
+       <rx-view component="myfile.html" :name="Mainasara"></rx-view>
        ```
        
        this results in the data `{name: "Mainasara"}`
@@ -48,8 +47,7 @@ RX renders all components inside `views` which have `data` that are used by `dir
        Arrays are represented in JSON format.
        
        ```html
-       <rx-view component="myfile.html" shopping_list="[1,2,3,4,5,6,7]">
-       </rx-view>
+       <rx-view component="myfile.html" :shopping_list="[1,2,3,4,5,6,7]"></rx-view>
        ```
        
        this results in the data `{shopping_list: [1,2,3,4,5,6,7]}`
@@ -59,8 +57,7 @@ RX renders all components inside `views` which have `data` that are used by `dir
        Objects are also represented in JSON format
        
        ```html
-       <rx-view component="myfile.html" user_info='{"name":"Mainasara", age: 18, "nationality": "Nigerian"}'>
-       </rx-view>
+       <rx-view component="myfile.html" :user_info='{"name":"Mainasara", age: 18, "nationality": "Nigerian"}'></rx-view>
        ```
        
        will result in `{"name":"Mainasara", Age: 18, "nationality": "Nigerian"}`
@@ -171,71 +168,71 @@ RX renders all components inside `views` which have `data` that are used by `dir
 
      Examples:
 
-         1. Data from function
+        1. Data from function
       
-         The following code will result in an error because a static template can not evalute functions
+        The following code will result in an error because a static template can not evalute functions
       
-         ```html
-         <h1>Result: {{getMyResult()}}</h1>
-         ```
+        ```html
+        <h1>Result: {{getMyResult()}}</h1>
+        ```
       
-         2. Object properties
+        2. Object properties
       
-         Javascript object properties have getters and setters which are functions at their core, this means the following code won't run either
+        Javascript object properties have getters and setters which are functions at their core, this means the following code won't run either
       
-         ```html
-         <h1>Result: {{myObject.result}}</h1>
-         ```
+        ```html
+        <h1>Result: {{myObject.result}}</h1>
+        ```
       
-         3. Spaces are dangerous
+        3. Spaces are dangerous
       
-         As mentioned above, spaces between the curly braces are not parsed because they won't be seen as static templates, so this code is invalid
+        As mentioned above, spaces between the curly braces are not parsed because they won't be seen as static templates, so this code is invalid
       
-         ```html
-         <h1>Result: {{ result }}</h1>
-         ```
+        ```html
+        <h1>Result: {{ result }}</h1>
+        ```
       
-         The right way to use the static template is like this.
+        The right way to use the static template is like this.
       
-         ```html
-         <h1>Result: {{result}}
-         ```
+        ```html
+        <h1>Result: {{result}}
+        ```
       
-         these syntax choices might look odd but they were made for security reasons, the variables usually used inside templates are in most cases not meant to be evaluated so having non-evaluatable data paired with strict syntax makes it very hard for hackers to perform XSS and at the same time does not hinder a user's freedom.
+        these syntax choices might look odd but they were made for security reasons, the variables usually used inside templates are in most cases not meant to be evaluated so having non-evaluatable data paired with strict syntax makes it very hard for hackers to perform XSS and at the same time does not hinder a user's freedom.
 
     2. Dynamic templates start and end with two parentheses e.g `(( someFunc() ))` and its values are always evaluated, it can also span multiple lines.
     
      Examples
          
-         1. Functions
+        1. Functions
          
-         The following code will execute with no errors
+        The following code will execute with no errors
          
-         ```html
-         <p>Some value is (( someFunc() ))</p>
-         ```
+        ```html
+        <p>Some value is (( someFunc() ))</p>
+        ```
          
-         2. Objects
+        2. Objects
          
-         Since templates can be evaluated, we can access object properties
+        Since templates can be evaluated, we can access object properties
          
-         ```html
-         <p>Window size is (( window.innerHeight ))x(( window.innerWidth ))</p>
-         ```
+        ```html
+        <p>Window size is (( window.innerHeight ))x(( window.innerWidth ))</p>
+        ```
          
-         3. Multiline
+        3. Multiline
          
-         Dynamic templates are also multiline so inline javascript can be done.
+        Dynamic templates are also multiline so inline javascript can be done.
          
-         ```html
-         <p>((
+        ```html
+        <p>((
            (function(){
              console.log("loading");
              const result = document.getElementById("myInput").value;
              return Number(result)*myObject.multiplier;
            })()
-         ))</p>
-         ```
+        ))</p>
+        ```
          
 
 #### Lifecycle
