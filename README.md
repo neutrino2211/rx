@@ -203,36 +203,36 @@ RX renders all components inside `views` which have `data` that are used by `dir
     2. Dynamic templates start and end with two parentheses e.g `(( someFunc() ))` and its values are always evaluated, it can also span multiple lines.
     
      Examples
-         
-        1. Functions
-         
-            The following code will execute with no errors
-            
-            ```html
-            <p>Some value is (( someFunc() ))</p>
-            ```
-         
-        2. Objects
-         
-            Since templates can be evaluated, we can access object properties
-            
-            ```html
-            <p>Window size is (( window.innerHeight ))x(( window.innerWidth ))</p>
-            ```
-         
-        3. Multiline
-         
-            Dynamic templates are also multiline so inline javascript can be done.
-            
-            ```html
-            <p>((
-            (function(){
-                console.log("loading");
-                const result = document.getElementById("myInput").value;
-                return Number(result)*myObject.multiplier;
-            })()
-            ))</p>
-            ```
+        
+       1. Functions
+        
+        The following code will execute with no errors
+        
+        ```html
+        <p>Some value is (( someFunc() ))</p>
+        ```
+        
+       2. Objects
+        
+        Since templates can be evaluated, we can access object properties
+        
+        ```html
+        <p>Window size is (( window.innerHeight ))x(( window.innerWidth ))</p>
+        ```
+        
+       3. Multiline
+        
+        Dynamic templates are also multiline so inline javascript can be done.
+        
+        ```html
+        <p>((
+        (function(){
+            console.log("loading");
+            const result = document.getElementById("myInput").value;
+            return Number(result)*myObject.multiplier;
+        })()
+        ))</p>
+        ```
          
 
 #### Lifecycle
